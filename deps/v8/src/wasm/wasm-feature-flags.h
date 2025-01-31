@@ -65,8 +65,10 @@
   /* V8 side owner: irezvov */                                                 \
   V(fp16, "fp16", false)                                                       \
                                                                                \
-  /* V8 side owner: irezvov */                                                 \
-  V(growable_stacks, "growable stacks for jspi", false)
+  /* Memory Control proposal */                                                \
+  /* https://github.com/WebAssembly/memory-control */                          \
+  /* V8 side owner: ahaas */                                                   \
+  V(memory_control, "memory control", false)
 
 // #############################################################################
 // Staged features (disabled by default, but enabled via --wasm-staging (also
@@ -84,11 +86,6 @@
   /* V8 side owner: ahaas */                                                   \
   /* Staged in v7.8. */                                                        \
   V(type_reflection, "wasm type reflection in JS", false)                      \
-                                                                               \
-  /* Memory64 proposal. */                                                     \
-  /* https://github.com/WebAssembly/memory64 */                                \
-  /* V8 side owner: clemensb */                                                \
-  V(memory64, "memory64", false)                                               \
                                                                                \
   /* Reference-Typed Strings Proposal. */                                      \
   /* https://github.com/WebAssembly/stringref */                               \
@@ -108,7 +105,11 @@
   /* JavaScript Promise Integration proposal. */                               \
   /* https://github.com/WebAssembly/js-promise-integration */                  \
   /* V8 side owner: thibaudm, fgm */                                           \
-  V(jspi, "javascript promise integration", false)
+  V(jspi, "javascript promise integration", false)                             \
+                                                                               \
+  /* Growable stacks for JavaScript Promise Integration proposal. */           \
+  /* V8 side owner: irezvov */                                                 \
+  V(growable_stacks, "growable stacks for jspi", false)
 
 // #############################################################################
 // Shipped features (enabled by default). Remove the feature flag once they hit
@@ -121,19 +122,18 @@
   /* Shipped in v9.5 */                                                        \
   V(legacy_eh, "legacy exception handling opcodes", true)                      \
                                                                                \
-  /* Not user-visible, defined here so an Origin Trial can control it. */      \
-  /* V8 side owner: manoskouk, clemensb */                                     \
-  /* Staged in v11.3 */                                                        \
-  /* Shipped in V12.7 */                                                       \
-  /* Shipped for wasm-gc modules as part of wasm-gc in v11.9 */                \
-  /* Launch bug: https://crbug.com/40898108 */                                 \
-  V(inlining, "wasm-into-wasm inlining", true)                                 \
-                                                                               \
   /* Imported Strings Proposal. */                                             \
   /* https://github.com/WebAssembly/js-string-builtins */                      \
   /* V8 side owner: jkummerow */                                               \
   /* Shipped in v13.0 */                                                       \
-  V(imported_strings, "imported strings", true)
+  V(imported_strings, "imported strings", true)                                \
+                                                                               \
+  /* Memory64 proposal. */                                                     \
+  /* https://github.com/WebAssembly/memory64 */                                \
+  /* V8 side owner: clemensb */                                                \
+  /* Staged in v11.2 */                                                        \
+  /* Shipped in v13.3 */                                                       \
+  V(memory64, "memory64", true)
 
 // Combination of all available wasm feature flags.
 #define FOREACH_WASM_FEATURE_FLAG(V)        \
